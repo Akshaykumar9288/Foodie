@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface MenuRepo extends JpaRepository<MenuEntity,Long> {
 
-    List<MenuEntity> findMenuByRestaurantId(RestaurantEntity restaurant);
+ //   List<MenuEntity> findMenuByRestaurantId(RestaurantEntity restaurant);
 }

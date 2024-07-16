@@ -18,8 +18,6 @@ public class ItemService {
 
     @Autowired
     private ItemRepo repo;
-    @Autowired
-    private MenuRepo menuRepo;
 
     public ItemEntity save(ItemEntity itemEntity){
        return repo.save(itemEntity);
@@ -29,20 +27,9 @@ public class ItemService {
         return repo.findAll();
     }
 
-    public List<ItemEntity> getItemsByRestaurantId(Long restaurant){
-        return repo.findAllByRestaurantId(restaurant);
-    }
+//    public List<ItemEntity> getItemsByRestaurantId(Long restaurant){
+//        return repo.findAllByRestaurantId(restaurant);
+//    }
 
-    public MenuEntity addMenuItem(MenuEntity menuItem) {
-        return menuRepo.save(menuItem);
-    }
-
-    public List<MenuEntity> getMenuItemsByRestaurantId(RestaurantEntity restaurantId) {
-        return menuRepo.findMenuByRestaurantId(restaurantId);
-    }
-
-    public MenuEntity getMenuItemById(Long id) {
-        return menuRepo.findById(id).orElse(null);
-    }
 
 }

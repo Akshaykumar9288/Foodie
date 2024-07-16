@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ItemRepo extends JpaRepository<ItemEntity,Long> {
 
-    List<ItemEntity> findAllByRestaurantId(Long restaurantId);
+   // List<ItemEntity> findAllByRestaurantId(Long restaurantId);
 
 }

@@ -31,32 +31,15 @@ public class ItemController {
         return service.getAll();
     }
 
-    @GetMapping("{restaurantId}")
-    public ResponseEntity<List<ItemEntity>> getItemsByRestaurantId(@PathVariable Long restaurantId){
-        List<ItemEntity> items = service.getItemsByRestaurantId(restaurantId);
-        if (!items.isEmpty()){
-            return ResponseEntity.ok(items);
-        }else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @GetMapping("{restaurantId}")
+//    public ResponseEntity<List<ItemEntity>> getItemsByRestaurantId(@PathVariable Long restaurantId){
+//        List<ItemEntity> items = service.getItemsByRestaurantId(restaurantId);
+//        if (!items.isEmpty()){
+//            return ResponseEntity.ok(items);
+//        }else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
-    @PostMapping("/add")
-    public ResponseEntity<MenuEntity> addMenu(@RequestBody MenuEntity menuEntity){
-        MenuEntity menuEntity1 = service.addMenuItem(menuEntity);
-        return new ResponseEntity<>(menuEntity1, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/restaurant/{restaurantId}")
-    public ResponseEntity<List<MenuEntity>> getMenuItemsByRestaurantId(@PathVariable RestaurantEntity restaurantId) {
-        List<MenuEntity> menuItems = service.getMenuItemsByRestaurantId(restaurantId);
-        return new ResponseEntity<>(menuItems, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<MenuEntity> getMenuItemById(@PathVariable Long id) {
-        MenuEntity menuItem = service.getMenuItemById(id);
-        return new ResponseEntity<>(menuItem, HttpStatus.OK);
-    }
 
 }

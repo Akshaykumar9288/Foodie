@@ -5,33 +5,15 @@ import java.util.List;
 
 @Entity
 public class MenuEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String Name;
+    private String name;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
-    private RestaurantEntity restaurantId;
-    @Column(nullable = false)
-    private double price;
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
+    private RestaurantEntity restaurant;
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
+    private List<ItemEntity> items;
 
     public Long getId() {
         return id;
@@ -41,30 +23,46 @@ public class MenuEntity {
         this.id = id;
     }
 
-    public RestaurantEntity getRestaurantId() {
-        return restaurantId;
+    public String getName() {
+        return name;
     }
 
-    public void setRestaurantId(RestaurantEntity restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public RestaurantEntity getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(RestaurantEntity restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
+
+    public MenuEntity(Long id, String name, RestaurantEntity restaurant, List<ItemEntity> items) {
+        this.id = id;
+        this.name = name;
+        this.restaurant = restaurant;
+        this.items = items;
     }
 
     public MenuEntity(){}
-
-    public MenuEntity(Long id, String name, RestaurantEntity restaurantId, double price) {
-        this.id = id;
-        Name = name;
-        this.restaurantId = restaurantId;
-        this.price = price;
-    }
 
     @Override
     public String toString() {
         return "MenuEntity{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
-                ", restaurantId=" + restaurantId +
-                ", price=" + price +
+                ", name='" + name + '\'' +
+                ", restaurant=" + restaurant +
+                ", items=" + items +
                 '}';
     }
 }

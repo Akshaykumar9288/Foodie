@@ -16,15 +16,16 @@ public class ItemEntity {
     private String imageUrl;
     @Column(nullable = false)
     private String category;
-    @Column(nullable = false)
-    private Long restaurantId;
+   @ManyToOne
+   @JoinColumn(name = "menu_id")
+   private MenuEntity menu;
 
-    public Long getRestaurantId() {
-        return restaurantId;
+    public MenuEntity getMenu() {
+        return menu;
     }
 
-    public void setRestaurantId(Long restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setMenu(MenuEntity menu) {
+        this.menu = menu;
     }
 
     public String getCategory() {
@@ -68,13 +69,13 @@ public class ItemEntity {
         this.imageUrl = imageUrl;
     }
 
-    public ItemEntity(String imageUrl, Double price, String name, Long id,String category,Long restaurantId) {
-        this.imageUrl = imageUrl;
-        this.price = price;
-        this.name = name;
+    public ItemEntity(Long id, String name, Double price, String imageUrl, String category, MenuEntity menu) {
         this.id = id;
+        this.name = name;
+        this.price = price;
+        this.imageUrl = imageUrl;
         this.category = category;
-        this.restaurantId = restaurantId;
+        this.menu = menu;
     }
 
     public ItemEntity(){}
@@ -87,7 +88,7 @@ public class ItemEntity {
                 ", price=" + price +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", category='" + category + '\'' +
-                ", restaurantId=" + restaurantId +
+                ", menu=" + menu +
                 '}';
     }
 }
